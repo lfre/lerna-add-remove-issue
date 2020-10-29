@@ -38,7 +38,7 @@ Tested with `npm` 7.0.3 and npm 6.14.8. Tested with `yarn` 1.22.10.
 To retry the steps:
 
 - `npx lerna clean` remove all `node_modules`. When asked, submit `y`.
-- Remove all `package-json.lock` or `yarn.lock` files. They are `gitignored` for the purposed of this example.
+- Remove all `package-json.lock` or `yarn.lock` files in `packages`. They are `gitignored` for the purposed of this example.
 - Remove all changes to `package.json` dependencies. E.g: `git checkout .`
 
 ## Notes
