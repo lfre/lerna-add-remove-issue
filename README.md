@@ -16,7 +16,7 @@ Tested with `npm` 7.0.3 and npm 6.14.8. Tested with `yarn` 1.22.10.
     - No `package-json.lock` will be generated.
     - `my-package-not-in-the-registry` will added to the `first` package.json.
 - Add a dev dependency e.g: `nodemon`.
-  - `npx lerna add nodemon --scope=first`.
+  - `npx lerna add nodemon --dev --scope=first`.
   - Results:
     - `nodemon` is added to `package.json` under `devDependencies`
     - A `package-json.lock` is created, including a `../my-package-not-in-the-registry` local reference.
