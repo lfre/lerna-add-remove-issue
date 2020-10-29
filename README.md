@@ -8,24 +8,24 @@ Tested with `npm` 7.0.3 and npm 6.14.8. Tested with `yarn` 1.22.10.
 
 ## Steps to replicate
 
-- `npm ci` to install the specific Lerna version at the time of the issue. (v3.22.1)
-- `npx lerna bootstrap`
-- `npx lerna add my-package-not-in-the-registry --scope=first`
+- `npm ci` to install the specific Lerna version at the time of the issue. (v3.22.1).
+- `npx lerna bootstrap`.
+- `npx lerna add my-package-not-in-the-registry --scope=first`.
   - Results:
     - A `node_modules` folder will be created within `first` folder. It will contain a symlink to `my-package-not-in-the-registry` local folder.
     - No `package-json.lock` will be generated.
-    - `my-package-not-in-the-registry` will added to `first` package.json.
-- Add a dev depedency e.g: `nodemon`
-  - `npx lerna add nodemon --scope=first`
+    - `my-package-not-in-the-registry` will added to the `first` package.json.
+- Add a dev dependency e.g: `nodemon`.
+  - `npx lerna add nodemon --scope=first`.
   - Results:
     - `nodemon` is added to `package.json` under `devDependencies`
-    - A `package-json.lock` is created, including a `../my-package-not-in-the-registry` reference.
-- Add a regular dependency e.g: `isomoprhic-unfetch`
-  - `npx lerna add isormoprhic-unfetch --scope=first`
+    - A `package-json.lock` is created, including a `../my-package-not-in-the-registry` local reference.
+- Add a regular dependency e.g: `isomoprhic-unfetch`.
+  - `npx lerna add isormoprhic-unfetch --scope=first`.
   - Results:
-    - `isomorphic-unfetch` is added to `package.json` under `dependencies`
-    - `nodemon` and `my-package-not-in-the-registry` remain under `dependencies` and `devDependencies` respectively.
-    - **ISSUE:** My `../my-package-not-in-the-registry` reference is removed from `package-json.lock`
+    - `isomorphic-unfetch` is added to `package.json` under `dependencies`.
+    - `nodemon` and `my-package-not-in-the-registry` remain under `dependencies` and `devDependencies` respectively in `package.json`.
+    - **ISSUE:** My `../my-package-not-in-the-registry` reference is removed from `package-json.lock`.
 - Attempt to add/remove any depedency:
   - `npx lerna exec "npm uninstall nodemon" --scope=first`
   - **ISSUE:** The command will fail because the reference to `my-package-not-in-the-registry` is missing **and** it is not available in the public registry.
