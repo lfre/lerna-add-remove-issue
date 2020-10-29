@@ -12,14 +12,14 @@ Tested with `npm` 7.0.3 and npm 6.14.8. Tested with `yarn` 1.22.10.
 - `npx lerna bootstrap`
 - `npx lerna add my-package-not-in-the-registry --scope=first`
   - Results:
-    - A `node_modules` folder will be created within `first` folder.
+    - A `node_modules` folder will be created within `first` folder. It will contain a symlink to `my-package-not-in-the-registry` local folder.
     - No `package-json.lock` will be generated.
-    - The `my-package-not-in-the-registry` will added to `first` package.json.
+    - `my-package-not-in-the-registry` will added to `first` package.json.
 - Add a dev depedency e.g: `nodemon`
   - `npx lerna add nodemon --scope=first`
   - Results:
     - `nodemon` is added to `package.json` under `devDependencies`
-    - A `package-json.lock` is created, including a `../my-package-not-in-the-registry` reference
+    - A `package-json.lock` is created, including a `../my-package-not-in-the-registry` reference.
 - Add a regular dependency e.g: `isomoprhic-unfetch`
   - `npx lerna add isormoprhic-unfetch --scope=first`
   - Results:
@@ -43,4 +43,4 @@ To retry the steps:
 
 ## Notes
 
-`nodemon` and `isomorphic-unfetch` are examples. I was able to replicate the issue with other packages, and different order.
+`nodemon` and `isomorphic-unfetch` are examples. I was able to replicate the issue with other packages, and in different order.
